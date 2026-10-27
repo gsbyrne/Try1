@@ -1,11 +1,12 @@
 import { expect, test } from '@playwright/test';
+import { credentials } from './credentials';
 import { LeavePage } from './pages/LeavePage';
 import { LoginPage } from './pages/LoginPage';
 
 test('opens Assign Leave and fills the requested leave details', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.goto();
-  await loginPage.login('GazzaGazzaGazza123', 'Password123');
+  await loginPage.login(credentials.username, credentials.password);
   await expect(page).toHaveURL(/\/dashboard\/index/);
 
   const leavePage = new LeavePage(page);
